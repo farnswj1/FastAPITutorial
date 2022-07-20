@@ -18,4 +18,4 @@ To build, run ```docker-compose build```
 
 ## Running
 To run the web app, run ```docker-compose up -d```, then 
-go to http://localhost using your web browser.
+go to http://localhost/docs using your web browser.
