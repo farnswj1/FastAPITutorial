@@ -20,7 +20,7 @@ def read_item(item_id: int, q: Union[str, None] = None):
     return {'item_id': item_id, 'q': q}
 
 
-@app.post('/greet/')
+@app.post('/greet')
 def greet(person: Person):
     greeting = f'Hello {person.name}.'
     age = person.age
