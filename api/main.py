@@ -2,7 +2,11 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import Union
 
-app = FastAPI()
+app = FastAPI(
+    title='FastAPI Tutorial',
+    description='This is a FastAPI tutorial.',
+    version='1.0.0'
+)
 
 
 class Person(BaseModel):
