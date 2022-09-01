@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from pydantic import BaseModel
 from typing import Union
 
@@ -17,6 +17,13 @@ class Person(BaseModel):
 @app.get('/')
 def root():
     return {'Hello': 'World'}
+
+
+@app.get('/ip_address', summary='IP Address')
+def ip_address(request: Request):
+    ip_address = request.headers.get('X-Forwarded-For', request.client.host)
+    port = request.headers.get('X-Forwarded-Port', str(request.client.port))
+    return {'ip_address': ip_address, 'port': port}
 
 
 @app.get('/items/{item_id}')
