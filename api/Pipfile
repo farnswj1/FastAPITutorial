@@ -4,8 +4,11 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-fastapi = "==0.79.0"
-uvicorn = {version = "==0.18.2", extras = ["standard"]}
+fastapi = "==0.82.0"
+databases = {version = "==0.6.1", extras = ["asyncpg"]}
+sqlalchemy = "==1.4.40"
+psycopg2 = "==2.9.3"
+uvicorn = {version = "==0.18.3", extras = ["standard"]}
 gunicorn = "==20.1.0"
 supervisor = "==4.2.4"
 

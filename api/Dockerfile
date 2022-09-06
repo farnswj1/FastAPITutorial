@@ -1,5 +1,5 @@
 # base image
-FROM python:3.10-slim-bullseye
+FROM python:3.10
 
 # set environment variables
 ENV PYTHONUNBUFFERED 1
@@ -13,5 +13,6 @@ COPY Pipfile Pipfile.lock ./
 RUN pipenv install --system --deploy --ignore-pipfile
 COPY . ./
 
-# run the app
-CMD ["supervisord", "-c", "supervisord.conf"]
+# entrypoint
+RUN chmod a+x docker-entrypoint.sh
+ENTRYPOINT ["./docker-entrypoint.sh"]
