@@ -1,5 +1,5 @@
 from sqlalchemy import MetaData, Table, Column, Integer, String, create_engine
-import os
+from config import settings
 
 
 metadata = MetaData()
@@ -12,5 +12,5 @@ people = Table(
     Column('age', Integer, nullable=False)
 )
 
-engine = create_engine(os.environ.get('DATABASE_URL'))
+engine = create_engine(settings.DATABASE_URL)
 metadata.create_all(engine)

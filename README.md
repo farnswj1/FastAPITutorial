@@ -6,6 +6,7 @@ The project uses the following:
 - Python 3.10
 - FastAPI
 - PostgreSQL 14
+- Redis 7
 - Nginx 1.21
 - Docker
 - Docker Compose
@@ -18,6 +19,7 @@ that contains the following environment variables:
 ```
 DATABASE_URL=postgresql://postgres:password@postgres:5432/fastapi_tutorial
 CORS_ALLOW_ORIGIN_REGEX=^https?://(localhost|127\.0\.0\.1)$
+REDIS_URL=redis://redis:6379
 ```
 
 ## Building
