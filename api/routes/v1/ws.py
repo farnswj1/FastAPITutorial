@@ -1,4 +1,5 @@
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect
+import logging
 
 
 router = APIRouter(prefix='/ws', tags=['Websockets'])
@@ -13,6 +14,7 @@ async def websocket_example(websocket: WebSocket):
             data = await websocket.receive_text()
             await websocket.send_text(f'Message text was: {data}')
     except WebSocketDisconnect:
-        pass
+        client = tuple(websocket.client)
+        logging.info(f'{client} disconnected.')
     else:
         await websocket.close()

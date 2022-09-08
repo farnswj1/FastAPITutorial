@@ -4,6 +4,14 @@ from db.database import database
 from cache.redis import redis
 from routes.v1 import router
 from config import settings
+import logging
+
+
+logging.basicConfig(
+    level=logging.INFO,
+    format='[%(asctime)s] [%(process)d] [%(levelname)s] %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S %z'
+)
 
 
 app = FastAPI(
