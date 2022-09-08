@@ -1,4 +1,4 @@
-from fastapi import APIRouter, WebSocket
+from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 
 
 router = APIRouter(prefix='/ws', tags=['Websockets'])
@@ -8,6 +8,11 @@ router = APIRouter(prefix='/ws', tags=['Websockets'])
 async def websocket_example(websocket: WebSocket):
     await websocket.accept()
 
-    while True:
-        data = await websocket.receive_text()
-        await websocket.send_text(f'Message text was: {data}')
+    try:
+        while True:
+            data = await websocket.receive_text()
+            await websocket.send_text(f'Message text was: {data}')
+    except WebSocketDisconnect:
+        pass
+    else:
+        await websocket.close()
