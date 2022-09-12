@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.trustedhost import TrustedHostMiddleware
+from uvicorn.middleware.proxy_headers import ProxyHeadersMiddleware
 from db.database import database
 from cache.redis import redis
 from routes.v1 import router
@@ -18,6 +20,11 @@ app = FastAPI(
     title='FastAPI Tutorial',
     description='This is a FastAPI tutorial.',
     version='1.0.0'
+)
+app.add_middleware(ProxyHeadersMiddleware)
+app.add_middleware(
+    TrustedHostMiddleware,
+    allowed_hosts=settings.ALLOWED_HOSTS
 )
 app.add_middleware(
     CORSMiddleware,

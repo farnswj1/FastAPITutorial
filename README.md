@@ -17,8 +17,9 @@ For additional information on project specifications, see the ```Pipfile```.
 In the ```api/``` directory, create a ```.env``` file
 that contains the following environment variables:
 ```
-DATABASE_URL=postgresql://postgres:password@postgres:5432/fastapi_tutorial
+ALLOWED_HOSTS=localhost 127.0.0.1
 CORS_ALLOW_ORIGIN_REGEX=^https?://(localhost|127\.0\.0\.1)$
+DATABASE_URL=postgresql://postgres:password@postgres:5432/fastapi_tutorial
 REDIS_URL=redis://redis:6379
 ```
 
