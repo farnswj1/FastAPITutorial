@@ -8,10 +8,7 @@ class Settings(BaseSettings):
     DATABASE_URL: str
     REDIS_URL: str
 
-    class Config:
-        env_file = '.env'
-        env_file_encoding = 'utf-8'
-
+    class Config(BaseSettings.Config):
         @classmethod
         def parse_env_var(cls, field_name: str, raw_val: str) -> Any:
             if field_name == 'ALLOWED_HOSTS':
