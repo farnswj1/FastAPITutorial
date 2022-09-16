@@ -1,6 +1,5 @@
 from fastapi import APIRouter, Request
-from cache.redis import redis
-from typing import Union
+from utils.arithmetic import add
 
 
 router = APIRouter(tags=['Generic'])
@@ -19,20 +18,11 @@ async def ip_address(request: Request):
 
 
 @router.get('/items/{item_id}')
-async def read_item(item_id: int, q: Union[str, None] = None):
+async def read_item(item_id: int, q: str | None = None):
     return {'item_id': item_id, 'q': q}
 
 
 @router.get('/add')
-async def add(a: int, b: int):
+async def add_numbers(a: int, b: int):
     min_val, max_val = (b, a) if a > b else (a, b)
-    cache_key = f'add_{min_val}_{max_val}'
-    result = await redis.get(cache_key)
-
-    if result is None:
-        result = a + b
-        await redis.set(cache_key, result, ex=60)
-    else:
-        result = int(result)
-
-    return result
+    return await add(min_val, max_val)
