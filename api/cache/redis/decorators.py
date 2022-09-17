@@ -7,11 +7,16 @@ import asyncio
 def cache(timeout: int | None = None) -> Callable:
     def decorator_func(func: Callable | Awaitable) -> Awaitable[Any]:
         is_async_function = asyncio.iscoroutinefunction(func)
+        module = func.__module__
+        name = func.__name__
+        func_path = f'{module}.{name}' if module else name
+
+        # Delete the references since they're no longer needed
+        del module
+        del name
 
         def _get_cache_key(*args, **kwargs) -> str:
-            module = func.__module__
-            name = func.__name__
-            cache_key = f'{module}.{name}' if module else name
+            cache_key = func_path
 
             if args:
                 args_str = quote('_'.join(map(str, args)))
