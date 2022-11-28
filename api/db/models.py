@@ -1,8 +1,6 @@
-from sqlalchemy import MetaData, Table, Column, Integer, String, create_engine
-from config import settings
+from sqlalchemy import Table, Column, Integer, String, Boolean
+from db.database import metadata
 
-
-metadata = MetaData()
 
 people = Table(
     'people',
@@ -11,6 +9,3 @@ people = Table(
     Column('name', String(30), nullable=False),
     Column('age', Integer, nullable=False)
 )
-
-engine = create_engine(settings.DATABASE_URL)
-metadata.create_all(engine)
