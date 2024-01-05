@@ -12,7 +12,7 @@ redis = {version = "==4.3.4", extras = ["hiredis"]}
 uvicorn = {version = "==0.18.3", extras = ["standard"]}
 gunicorn = "==20.1.0"
 supervisor = "==4.2.4"
-alembic = "==1.8.1"
+alembic = "==1.13.1"
 
 [dev-packages]
 
